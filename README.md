@@ -8,7 +8,7 @@ configuration-service：配置中心服务，这里利用git作为backend，本�
 
 坑2：阿里的镜像可能拉不到新版的spring cloud，需要去掉镜像配置再试。
 
-坑3：eureka server实现了onApplicationEvent响应Environment配置变动事件，不需要但是默认只支持eureka.client.region、eureka.client.service-url.*、eureka.client.availability-zones.*配置项，不支持驼峰命名的eureka.client.serviceUrl.defaultZone。
+坑3：eureka server实现了onApplicationEvent响应Environment配置变动事件，不需要@RefreshScope，但是默认只响应eureka.client.region、eureka.client.service-url.*、eureka.client.availability-zones.*配置项变动刷新peer节点集，不支持驼峰命名的eureka.client.serviceUrl.defaultZone。
 
 eureka-service：简单eureka服务+docker化+单机高可用部署，提供集群内服务注册和发现的能力，eureka server的高可用其实是简单多对多replicate的架构，每个服务启动时就需要通过配置确定同一个zone的replica节点列表。eureka server集群的一致性保证机制待考，如果是简单的单点写入+广播那一致性就有点弱了。
 
