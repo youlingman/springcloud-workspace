@@ -1,0 +1,29 @@
+# yaml 配置
+version: '3'
+services:
+  eureka-service1:
+    image: "cyl/eureka-service"
+    ports:
+     - "9101:8761"
+    hostname: "eureka-service1"
+    container_name: "eureka-service-1"
+    command: --spring.profiles.active="eureka-service1"
+  eureka-service2:
+    image: "cyl/eureka-service"
+    ports:
+     - "9102:8761"
+    hostname: "eureka-service2"
+    container_name: "eureka-service-2"
+    command: --spring.profiles.active="eureka-service2"
+  eureka-service3:
+    image: "cyl/eureka-service"
+    ports:
+     - "9103:8761"
+    hostname: "eureka-service3"
+    container_name: "eureka-service-3"
+    command: --spring.profiles.active="eureka-service3"
+
+networks:
+    default:
+        external:
+            name: eureka-service
